@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   get 'users/:user_id/reservations', to: 'reservations#users_reservations', as: 'users_reservations'
   get 'google-isbn', to: 'google_books#show'
 
-  resources :books
+  resources :books, except: [:destroy, :edit, :update]
 end
