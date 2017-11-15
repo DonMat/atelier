@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   before_action :load_books, only: :index
   before_action :load_book, only: :show
   before_action :new_book, only: :create
+  before_action :load_reservations_handler, only: :show
 
   def index
   end
@@ -38,5 +39,9 @@ class BooksController < ApplicationController
 
   def new_book
     @book = Book.new(title: params[:title], isbn: params[:isbn], category_name: params[:category_name])
+  end
+
+  def load_reservations_handler
+    @reservations_handler ||= ReservationsHandler.new(current_user)
   end
 end
