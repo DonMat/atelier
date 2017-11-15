@@ -13,6 +13,7 @@ class ReservationsHandler
       reservation = book.reservations.create(user: user, status: 'TAKEN')
     end
     ReservationMailer.take(reservation).deliver_now
+    NotificationEmailWorkerWorker.perform_at(reservation.expires_at-1.minute, book.id)
   end
 
   def can_take?(book)
