@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   get 'google-isbn', to: 'google_books#show'
 
   resources :books, except: [:destroy, :edit, :update]
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end
