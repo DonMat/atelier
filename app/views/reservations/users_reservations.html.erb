@@ -14,7 +14,7 @@
         <% @user.reservations.active.each do |reservation| %>
           <tr>
             <td class='book-status book-status--<%= reservation.status.underscore %>'><%= reservation.status %></td>
-            <td><%= reservation.book.title %></td>
+            <td><%= link_to reservation.book.title, reservation.book %></td>
             <td><%= reservation.expires_in %></td>
           </tr>
         <% end %>
