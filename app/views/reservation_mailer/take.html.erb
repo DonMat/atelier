@@ -1,0 +1,9 @@
+<h2>
+  Witaj <%= @user.email %>
+</h2>
+<p>
+  Wypożyczyłeś książkę: <%= link_to "#{@book.title}, #{@book.isbn}, #{@book.year}", book_url(@book, host: 'localhost:3000') %>
+</p>
+<p>
+  Data zwrotu: <%= @reservation.expires_at %>
+</p>

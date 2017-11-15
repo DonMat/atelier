@@ -7,10 +7,12 @@ class ReservationsHandler
     return unless can_take?(book)
 
     if available_reservation(book).present?
-      available_reservation(book).update_attributes(status: 'TAKEN')
+      reservation = available_reservation(book)
+      reservation.update_attributes(status: 'TAKEN')
     else
-      book.reservations.create(user: user, status: 'TAKEN')
+      reservation = book.reservations.create(user: user, status: 'TAKEN')
     end
+    ReservationMailer.take(reservation).deliver_now
   end
 
   def can_take?(book)
