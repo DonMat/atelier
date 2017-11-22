@@ -9,13 +9,21 @@
       </tr>
     </thead>
     <tbody>
-      <% @category.books.each do |book| %>
-        <tr>
-          <td><%= book.title %></td>
-          <td><%= book.isbn %></td>
-          <td><%= link_to('show', book_path(book.id)) %>
-        </tr>
-      <% end %>
+      <%= render @category.books %>
+    </tbody>
+  </table>
+
+  <h2>Books in category <%= @category.name %></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>ISBN</th>
+        <th>action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @category.similar_books %>
     </tbody>
   </table>
   <%= link_to new_book_path, class: 'btn' do %>
@@ -23,4 +31,3 @@
     add book
   <% end %>
 </main>
-
