@@ -9,6 +9,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    a9n (0.5.4)
     actioncable (5.1.2)
       actionpack (= 5.1.2)
       nio4r (~> 2.0)
@@ -245,6 +246,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  a9n
   awesome_print
   byebug
   capybara (~> 2.13)
