@@ -39,3 +39,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'omniauth-google-oauth2'
 gem 'a9n'
 gem 'google-api-client', '0.8.2', require: 'google/api_client'
+gem 'sidekiq'

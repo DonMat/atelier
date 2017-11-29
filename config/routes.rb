@@ -16,4 +16,8 @@ Rails.application.routes.draw do
       get 'by_category/:name', action: :by_category
     end
   end
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
 end

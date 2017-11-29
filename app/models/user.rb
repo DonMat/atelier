@@ -20,4 +20,8 @@ class User < ApplicationRecord
       user.save
     end
   end
+
+  def from_omniauth?
+    provider == "google_oauth2"
+  end
 end

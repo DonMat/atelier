@@ -84,6 +84,6 @@ class Book < ApplicationRecord
   end
 
   def notify_user_calendar(reservation)
-    UserCalendarNotifier.new(reservation.user).perform(reservation)
+    CalendarWorker.perform_async(reservation.id)
   end
 end
