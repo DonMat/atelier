@@ -28,7 +28,7 @@ class Book < ApplicationRecord
   end
 
   def can_give_back?(user)
-    reservations.find_by(user: user, status: 'TAKEN').present?
+    ::GivenBackPolicy.new(user: user, book: self).applies?
   end
 
   def give_back
