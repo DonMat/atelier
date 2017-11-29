@@ -2,7 +2,7 @@ class ReservationsController < ApplicationController
   before_action :load_user, only: [:users_reservations]
 
   def reserve
-    book.reserve(current_user) if book.can_reserve?(current_user)
+    book.reserve(current_user) if ::GivenBackPolicy.new(user: current_user, book: book).can_reserve?
     redirect_to(book_path(book.id))
   end
 

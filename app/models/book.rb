@@ -34,12 +34,8 @@ class Book < ApplicationRecord
     end
   end
 
-  def can_reserve?(user)
-    reservations.find_by(user: user, status: 'RESERVED').nil?
-  end
-
   def reserve(user)
-    return unless can_reserve?(user)
+    return unless ::GivenBackPolicy.new(user: user, book: self).can_reserve?
 
     reservations.create(user: user, status: 'RESERVED')
   end
