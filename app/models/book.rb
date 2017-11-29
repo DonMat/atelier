@@ -27,10 +27,6 @@ class Book < ApplicationRecord
     end
   end
 
-  def can_give_back?(user)
-    ::GivenBackPolicy.new(user: user, book: self).applies?
-  end
-
   def give_back
     ActiveRecord::Base.transaction do
       reservations.find_by(status: 'TAKEN').update_attributes(status: 'RETURNED')
