@@ -29,7 +29,8 @@ class BooksController < ApplicationController
 
   def by_category
     @category = ::Category.find_by(name: params[:name])
-
+  end
+  
   def filter
     render template: 'books/filter', locals: { books: filter_books }
   end
