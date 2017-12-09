@@ -1,0 +1,33 @@
+<main class="main-content">
+  <h2>Books in category <%= @category.name %></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>ISBN</th>
+        <th>action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @category.books %>
+    </tbody>
+  </table>
+
+  <h2>Books in category <%= @category.name %></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>ISBN</th>
+        <th>action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @category.similar_books %>
+    </tbody>
+  </table>
+  <%= link_to new_book_path, class: 'btn' do %>
+    <i class="fa fa-plus-circle"></i>
+    add book
+  <% end %>
+</main>
