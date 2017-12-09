@@ -23,6 +23,6 @@ Rails.application.routes.draw do
         get 'books/lookup', to: 'books#lookup'
       end
   end
-  
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'end

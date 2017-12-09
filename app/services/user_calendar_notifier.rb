@@ -1,15 +1,19 @@
 class UserCalendarNotifier
   def initialize(user)
-    @client = Google::APIClient.new
-    client.authorization.access_token = user.token
-    client.authorization.refresh_token = user.refresh_token
-    client.authorization.client_id = A9n.GOOGLE_CLIENT_ID
-    client.authorization.client_secret = A9n.GOOGLE_CLIENT_SECRET
-    client.authorization.refresh!
-    @service = client.discovered_api('calendar', 'v3')
+    if user.from_omniauth?
+      @client = Google::APIClient.new
+      client.authorization.access_token = user.token
+      client.authorization.refresh_token = user.refresh_token
+      client.authorization.client_id = A9n.GOOGLE_CLIENT_ID
+      client.authorization.client_secret = A9n.GOOGLE_CLIENT_SECRET
+      client.authorization.refresh!
+      @service = client.discovered_api('calendar', 'v3')
+    end
   end
 
   def perform(reservation)
+    return unless @client
+
     find_calendar_by(A9n.default_calendar).tap {|cal|
       unless cal.nil?
         response = client.execute(api_params(cal, reservation))
