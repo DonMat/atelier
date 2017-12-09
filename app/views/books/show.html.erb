@@ -4,7 +4,7 @@
   <% unless @book.reservations.empty? %>
     <%= render partial: 'books/elements/reservations', locals: {reservations: @book.reservations} %>
   <% end %>
-  <%= render partial: 'books/elements/action', locals: {book: @book} %>
+  <%= render partial: 'books/elements/action', locals: {book: @book, reservations_handler: @reservations_handler} %>
   <%= link_to books_path, class: 'back-link' do %>
     <i class="fa fa-angle-double-left"></i>
     return to books

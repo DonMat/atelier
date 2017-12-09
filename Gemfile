@@ -8,7 +8,7 @@ end
 gem 'devise'
 
 gem 'rails', '~> 5.1.2'
-gem 'pg'
+# gem 'pg'
 gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'httparty'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -36,3 +37,8 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'active_hash'
+gem 'omniauth-google-oauth2'
+gem 'a9n'
+gem 'google-api-client', '0.8.2', require: 'google/api_client'
+gem 'sidekiq'

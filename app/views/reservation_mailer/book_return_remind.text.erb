@@ -1,0 +1,3 @@
+Witaj <%= @user.email %>
+Wypożyczył(e|a)ś książkę: <%= link_to @book.title, book_url(@book, host: 'localhost:3000') %>
+Zbliża się data zwrotu: <%= @reservation.expires_at %>

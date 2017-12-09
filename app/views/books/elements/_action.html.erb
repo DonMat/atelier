@@ -1,4 +1,4 @@
-<% if book.can_take?(current_user) %>
+<% if reservations_handler.can_take?(book) %>
   <%= link_to('Take', take_book_path(book_id: book.id), class: 'btn') %>
 <% elsif ::GivenBackPolicy.new(user: current_user, book: book).applies? %>
   <%= link_to('Give back', give_back_book_path(book_id: book.id), class: 'btn') %>

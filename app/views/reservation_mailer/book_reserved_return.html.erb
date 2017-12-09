@@ -1,0 +1,9 @@
+<h2>
+  Witaj <%= @user.email %>
+</h2>
+<p>
+  Rezerwował(e|a)ś książkę: <%= link_to @book.title, book_url(@book, host: 'localhost:3000') %>
+</p>
+<p>
+  Zbliża się jej data zwrotu: <%= @reservation.expires_at %>
+</p>

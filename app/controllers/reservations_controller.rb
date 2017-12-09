@@ -1,23 +1,24 @@
 class ReservationsController < ApplicationController
   before_action :load_user, only: [:users_reservations]
+  before_action :load_reservations_handler
 
   def reserve
-    book.reserve(current_user) if ::GivenBackPolicy.new(user: current_user, book: book).can_reserve?
+    @reservations_handler.reserve(book)
     redirect_to(book_path(book.id))
   end
 
   def take
-    book.take(current_user) if book.can_take?(current_user)
+    @reservations_handler.take(book)
     redirect_to(book_path(book.id))
   end
 
   def give_back
-    book.give_back if GivenBackPolicy.new(user: current_user, book: book).applies?
+    @reservations_handler.give_back(book)
     redirect_to(book_path(book.id))
   end
 
   def cancel
-    book.cancel_reservation(current_user)
+    @reservations_handler.cancel_reservation(book)
     redirect_to(book_path(book.id))
   end
 
@@ -32,5 +33,9 @@ class ReservationsController < ApplicationController
 
   def load_user
     @user = User.find(params[:user_id])
+  end
+
+  def load_reservations_handler
+    @reservations_handler ||= ReservationsHandler.new(current_user)
   end
 end
